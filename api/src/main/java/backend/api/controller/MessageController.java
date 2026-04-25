@@ -2,6 +2,7 @@ package backend.api.controller;
 
 import backend.api.model.ContactMessage;
 import backend.api.services.TelegramService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +17,7 @@ public class MessageController {
     private TelegramService telegramService;
 
     @PostMapping("send")  
-    public String send(@RequestBody ContactMessage contactMessage) {
+    public String send(@Valid @RequestBody ContactMessage contactMessage) {
         telegramService.sendMessage(contactMessage);
         return "Message sent";
     }

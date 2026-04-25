@@ -10,6 +10,7 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -22,9 +23,12 @@ public class RateLimitFilter implements Filter {
 
     private final Map<String, Bucket> cache = new ConcurrentHashMap<>();
 
+    @Value("${rate.limit.requests.per.day:1}")
+    private int requestsPerDay;
+
     private Bucket createBucket() {
         return Bucket.builder()
-                .addLimit(Bandwidth.simple(2, Duration.ofMinutes(60*24)))
+                .addLimit(Bandwidth.simple(requestsPerDay, Duration.ofDays(1)))
                 .build();
     }
 

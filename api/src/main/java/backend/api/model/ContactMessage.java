@@ -1,9 +1,21 @@
 package backend.api.model;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class ContactMessage {
 
+    @NotBlank(message = "Name is required")
+    @Size(max = 40, message = "Name must be at most 40 characters")
     private String name;
+
+    @NotBlank(message = "Email is required")
+    @Email(message = "Email must be a valid email address")
     private String email;
+
+    @NotBlank(message = "Message is required")
+    @Size(max = 700, message = "Message must be at most 700 characters")
     private String message;
 
     public String getName() { return name; }
