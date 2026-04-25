@@ -16,7 +16,6 @@
 	<description>Portfolio Backend API</description>
 
 	<modules>
-		<module>domain</module>
 		<module>api</module>
 	</modules>
 
