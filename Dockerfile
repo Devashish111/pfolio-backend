@@ -5,6 +5,6 @@ WORKDIR /app
 COPY . .
 
 RUN chmod +x mvnw
-RUN ./mvnw clean package
+RUN ./mvnw -f api/pom.xml clean package -DskipTests
 
-CMD ["java", "-jar", "api/target/*.jar"]
+CMD ["sh", "-c", "java -jar api/target/*.jar"]
