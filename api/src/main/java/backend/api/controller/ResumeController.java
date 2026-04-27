@@ -57,10 +57,11 @@ public class ResumeController {
     // Serve Resume
     @GetMapping("/resume.pdf")
     public ResponseEntity<Resource> getResume() {
-
+        System.out.println("Serving resume.pdf");
         Path path = Paths.get(UPLOAD_DIR + FILE_NAME);
 
         if (!Files.exists(path)) {
+            System.out.println("resume.pdf not found at path: " + path.toString()); 
             return ResponseEntity.notFound().build();
         }
 
