@@ -52,7 +52,7 @@ public class RateLimitFilter implements Filter {
 
         // Skip rate limiting for SSE endpoints
         String requestPath = req.getRequestURI();
-        if (requestPath.contains("/message/status/") || requestPath.contains("/resume")) {
+        if (requestPath.contains("/message/status/") || requestPath.contains("admin")) {
             chain.doFilter(request, response);
             return;
         }
